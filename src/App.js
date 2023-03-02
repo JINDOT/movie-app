@@ -14,8 +14,7 @@ function App() {
 
     setMovies(json.data.movies);
     setLoading(false);
-
-  }
+  };
   /*
   useEffect(() => {
     fetch(
@@ -31,10 +30,28 @@ function App() {
     getMovies();
   }, []);
   return (
-    <div >
-      {loading ? <h1>Loading...</h1> : null}
+    <div>
+      {loading ? (<h1>Loading...</h1>) :
+        (
+          <div>
+            {movies.map((movie) => (
+              <div key={movie.id}>
+                <img src={movie.medium_cover_image} />
+                <h2>{movie.title}</h2>
+                <p>{movie.summary}</p>
+                <ul>
+                  {movie.genres.map((g) => (
+                    <li key={g}>{g}</li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        )}
     </div>
   );
 }
 
 export default App;
+/* 역시 code는 무작정 따라쓰지 않고, 뭔지 알고 써야한다.*/
+/* map() : 반복되는 component를 랜더링하기 위해 사용 */
